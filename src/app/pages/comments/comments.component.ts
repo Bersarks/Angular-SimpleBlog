@@ -24,10 +24,11 @@ export class CommentsComponent {
     if(queryParams['i'] !== undefined){
       this.index = parseInt(queryParams['i'])
     }
-    this.commentService.getComments().subscribe((comments) => (this.comments = comments));
-    this.commentService
-      .getComments()
-      .subscribe((comments) => (this.filteredContent = comments));
+    this.commentService.getComments().subscribe
+    ((comments) => (this.comments = comments));
+
+    this.commentService.getComments().subscribe
+      ((comments) => (this.filteredContent = comments));
   }
 
   handleDeleteClick(commentId: number | undefined) {
@@ -40,13 +41,11 @@ export class CommentsComponent {
 
   filterData() {
     if (this.searchText === '') {
-      this.commentService
-        .getComments()
-        .subscribe((comments) => (this.filteredContent = comments));
+      this.commentService.getComments().subscribe
+        ((comments) => (this.filteredContent = comments));
     } else {
-      this.filteredContent = this.comments.filter((comment) => {
-        return comment.commentId === +this.searchText;
-      });
+      this.filteredContent = this.comments.filter
+      ((comment) => {return comment.commentId === +this.searchText;});
     }
   }
 
@@ -66,11 +65,9 @@ export class CommentsComponent {
     if (this.index > 0) {
       this.index--;
       this.isNextDisabled = false;
-      this.index === 0
-        ? this.router.navigate(['comments'])
-        : this.router.navigate(['comments'], {
-            queryParams: { i: this.index },
-          });
+      this.index === 0 ? this.router.navigate(['comments']) :
+       this.router.navigate(['comments'], 
+       { queryParams: { i: this.index },});
     } else {
       alert('You are already on first page!');
     }
@@ -85,10 +82,8 @@ export class CommentsComponent {
     }
     if (this.index + 1 < totalPage) {
       this.index++;
-      this.router.navigate(['comments'], {
-        queryParams: { i: this.index },
-      });
-      this.isPrevDisabled = false;
+      this.router.navigate(['comments'],
+      {queryParams: { i: this.index },});
     } else {
       alert('You are already at last page!!');
     }

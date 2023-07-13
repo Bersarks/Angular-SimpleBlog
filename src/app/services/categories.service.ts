@@ -20,7 +20,6 @@ export class CategoriesService {
     this.categories.push(newCategory);
     this.categoriesSubject.next(this.categories)
   }
-  
 
   getCategory(categoryId: number): Observable<Category | undefined>{
     const category = this.categories.find(category => category.categoryId = categoryId)
