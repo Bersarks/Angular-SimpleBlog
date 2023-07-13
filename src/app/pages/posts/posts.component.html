@@ -1,0 +1,41 @@
+<div class="input-group mb-3">
+	<input type="text" class="form-control" placeholder="Search By ID" [(ngModel)]="searchText" aria-describedby="button-addon2">
+	<app-button text="Search" classText="btn btn-success" (buttonClick)="handleSearchTextChange(searchText)"></app-button>
+</div>
+<table class="table table-hover">
+		<thead>
+			<tr class="text-center">
+				<th scope="col">Post ID</th>
+				<th scope="col">User ID</th>
+				<th scope="col">Category ID</th>
+				<th scope="col">Title</th>
+				<th scope="col">Content</th>
+				<th scope="col">View Count</th>
+				<th scope="col">Creation Date</th>
+				<th scope="col">Publish Status</th>
+				<th scope="col"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr 
+			*ngFor="let post of filteredContent | slice: (index * size) : ((index + 1) * size)">
+			<td class="row" class="text-center">{{ post.postId }}</td>
+			<td class="text-center">{{ post.userId }}</td>
+			<td class="text-center">{{ post.categoryId}}</td>
+			<td class="text-center">{{ post.title }}</td>
+			<td class="text-center">{{ post.content }}</td>
+			<td class="text-center">{{ post.viewCount }}</td>
+			<td class="text-center">{{ post.creationDate | date: "dd/MM/yyyy"  }}</td>
+			<td class="text-center">{{ post.isPublished }}</td>
+			<td class="btn-group">
+				<app-button text="Edit" classText="btn btn-primary btn-sm" (buttonClick)="handleEditClick(post.postId)"></app-button>
+				<app-button text="Delete" classText="btn btn-danger btn-sm" (buttonClick)="handleDeleteClick(post.postId)"></app-button>
+			</tr>
+		</tbody>
+	</table>
+	<div class="container d-flex align-items-center justify-content-center">
+		<div class="btn-group" role="group" aria-label="Basic example">
+			<app-button text="Back" (buttonClick)="handleBackClick()"></app-button>
+			<app-button text="Next" (buttonClick)="handleNextClick()"></app-button>
+		</div>
+	</div>
