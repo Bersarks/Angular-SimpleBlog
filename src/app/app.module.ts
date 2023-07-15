@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ButtonComponent } from './components/button/button.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { MainComponent } from './pages/main/main.component';
 import { UsersComponent } from './pages/users/users.component';
 import { FormsModule } from '@angular/forms';
 import { UserDetailsComponent } from './pages/user-details/user-details.component';
@@ -27,7 +26,6 @@ import { AddCategoryComponent } from './pages/add-category/add-category.componen
     HeaderComponent,
     ButtonComponent,
     FooterComponent,
-    MainComponent,
     UsersComponent,
     UserDetailsComponent,
     PostsComponent,

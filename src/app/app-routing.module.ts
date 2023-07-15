@@ -4,7 +4,6 @@ import { UsersComponent } from './pages/users/users.component';
 import { UserDetailsComponent } from './pages/user-details/user-details.component';
 import { PostsComponent } from './pages/posts/posts.component';
 import { PostDetailsComponent } from './pages/post-details/post-details.component';
-import { MainComponent } from './pages/main/main.component';
 import { CommentsComponent } from './pages/comments/comments.component';
 import { CommentDetailComponent } from './pages/comment-detail/comment-detail.component';
 import { CategoryComponent } from './pages/category/category.component';
@@ -15,7 +14,7 @@ import { AddPostComponent } from './pages/add-post/add-post.component';
 import { AddCategoryComponent } from './pages/add-category/add-category.component';
 
 const routes: Routes = [
-  { path: '', component: MainComponent},
+  { path: '', component: UsersComponent},
   { path: 'users', component: UsersComponent},
   { path: 'users/:id', component: UserDetailsComponent},
   { path: 'posts', component: PostsComponent},
