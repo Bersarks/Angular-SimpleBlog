@@ -20,7 +20,8 @@ export class AddUserComponent {
   
   constructor(private usersService: UsersService, private route: ActivatedRoute, private router: Router) { 
     this.usersService.getUsers().subscribe(users => this.reservedIds = users.length + 1);
-  }
+    this.newUser.userId = this.reservedIds;
+    }
 
   // zaten dışarıdan elle user id değiştirilebildiği için saçma gelse de burda en azından var olan id girilmesini engelledim.
   // ayrıca user id girilmediğinde de hata vermesini sağladım.

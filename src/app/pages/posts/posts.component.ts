@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Content } from 'src/app/data/Content';
 import { PostsService } from 'src/app/services/posts.service';
+import { CommentsService } from 'src/app/services/comments.service';
 
 @Component({
   selector: 'app-posts',
@@ -11,11 +12,13 @@ import { PostsService } from 'src/app/services/posts.service';
 export class PostsComponent {
   title: string = 'Posts';
   posts: Content[] = [];
-
+  commentCount: number = 0;
+  
   searchText: string = '';
   filteredContent: Content[] = [];
 
-  constructor(private postService: PostsService, private router: Router, private route: ActivatedRoute) {
+  constructor(private postService: PostsService, private router: Router, private route: ActivatedRoute,
+    private commentsService: CommentsService) {
     
   }
 
@@ -42,9 +45,20 @@ export class PostsComponent {
   }
 
   handleDeleteClick(postId: number | undefined) {
-    if (postId) {
-      this.postService.deletePost(postId);
-    } else {
+    if (postId !== undefined) {
+      this.commentsService.getCommentsByPost(postId).subscribe(comments => this.commentCount = comments.length);
+      if (this.commentCount > 0) {
+        alert('Can not delete post with comments');
+        return;
+      }
+      else if (postId) {
+        this.postService.deletePost(postId);
+      }
+      else {
+        alert('Post ID can not find');
+      }
+    }
+    else {
       alert('Post ID can not find');
     }
   }

@@ -37,4 +37,9 @@ export class CommentsService {
     const comments = this.comments.filter(comment => comment.postId === id)
     return of(comments)
   }
+  
+  getCommentsByUser(id: number): Observable<Comment[]>{
+    const comments = this.comments.filter(comment => comment.userId === id)
+    return of(comments)
+  }
 }

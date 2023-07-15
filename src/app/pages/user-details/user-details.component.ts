@@ -23,4 +23,11 @@ export class UserDetailsComponent {
     this.usersService.getUserById(userId).subscribe(user => this.user = user);
     this.postsService.getPostsByUser(userId).subscribe(posts => this.posts = posts)
   }
+
+  ngOnChange(): void {
+    const params = this.route.snapshot.params;
+    let userId = parseInt(params['id']);
+    this.usersService.getUserById(userId).subscribe(user => this.user = user);
+    this.postsService.getPostsByUser(userId).subscribe(posts => this.posts = posts)
+  }
 }

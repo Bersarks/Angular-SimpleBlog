@@ -3,6 +3,8 @@ import { Users } from '../../data/Users';
 import { UsersService } from '../../services/users.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { PostsService } from '../../services/posts.service';
+import { CommentsService } from 'src/app/services/comments.service';
 
 @Component({
   selector: 'app-users',
@@ -14,6 +16,8 @@ export class UsersComponent {
   users: Users[] = [];
   index: number = 0;
   size: number = 10;
+  postCount: number = 0;
+  commentCount: number = 0;
 
   searchText: string = '';
   filterBy: string = '';
@@ -26,7 +30,8 @@ export class UsersComponent {
   handleAddClick() {
     this.router.navigate(['adduser']);
   }
-  constructor(private usersService: UsersService, private router: Router, private activeRoute : ActivatedRoute) {
+  constructor(private usersService: UsersService, private router: Router, private activeRoute : ActivatedRoute,
+    private postsService: PostsService, private commentsService: CommentsService) {
       const queryParams = this.activeRoute.snapshot.queryParams;
     if (queryParams['p'] !== undefined) {
         this.index = parseInt(queryParams['p']);
@@ -55,9 +60,23 @@ export class UsersComponent {
   }
 
   handleDeleteClick(userId: number | undefined) {
-    if (userId) {
-      this.usersService.deleteUser(userId);
-    } else {
+    if (userId !== undefined) {
+      this.postsService.getPostsByUser(userId).subscribe(posts => this.postCount = posts.length);
+      this.commentsService.getCommentsByUser(userId).subscribe(comments => this.commentCount = comments.length);
+
+      if (this.postCount > 0) {
+        alert('Can not delete user with posts');
+        return;
+      }
+      else if (this.commentCount > 0) {
+        alert('Can not delete user with comments');
+        return;
+      }
+      else if (userId) {
+        this.usersService.deleteUser(userId);
+      }
+    }
+    else {
       alert('User ID can not find');
     }
   }
