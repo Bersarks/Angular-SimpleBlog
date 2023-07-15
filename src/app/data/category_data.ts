@@ -3,7 +3,7 @@ import { Category } from './Category';
 export const categories: Category[] = [
 	{
 	  categoryId: 1,
-	  name: "Games",
+	  name: "Health",
 	  creationDate: "3/10/2023"
 	},
 	{
@@ -23,12 +23,12 @@ export const categories: Category[] = [
 	},
 	{
 	  categoryId: 5,
-	  name: "Home Decor",
+	  name: "Art",
 	  creationDate: "6/28/2020"
 	},
 	{
 	  categoryId: 6,
-	  name: "Beauty",
+	  name: "Sports",
 	  creationDate: "11/17/2019"
 	},
 	{
@@ -38,7 +38,7 @@ export const categories: Category[] = [
 	},
 	{
 	  categoryId: 8,
-	  name: "Home Decor",
+	  name: "Food",
 	  creationDate: "10/18/2019"
 	},
 	{

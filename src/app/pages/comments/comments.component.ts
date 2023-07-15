@@ -30,6 +30,18 @@ export class CommentsComponent {
     this.commentService.getComments().subscribe
       ((comments) => (this.filteredContent = comments));
   }
+  
+  ngOnChange(){
+    const queryParams = this.route.snapshot.queryParams;
+    if(queryParams['i'] !== undefined){
+      this.index = parseInt(queryParams['i'])
+    }
+    this.commentService.getComments().subscribe
+    ((comments) => (this.comments = comments));
+
+    this.commentService.getComments().subscribe
+      ((comments) => (this.filteredContent = comments));
+  }
 
   handleDeleteClick(commentId: number | undefined) {
     if (commentId) {
@@ -88,7 +100,12 @@ export class CommentsComponent {
       alert('You are already at last page!!');
     }
   }
+  
   handleEditClick(commentId: number | undefined) {
     this.router.navigate(['comments', commentId]);
+  }
+  
+  handleAddClick() {
+    this.router.navigate(['addcomment']);
   }
 }

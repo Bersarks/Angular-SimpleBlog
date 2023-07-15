@@ -1,0 +1,29 @@
+<div class="container p-12">
+	<div class="w-full h-full flex flex-col items-center text-cyan text-lg">
+	  <div
+		class="w-full bg-cyan-800 flex flex-col items-center rounded pb-2 px-2"
+		*ngIf="newCategory"
+	  >
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="basic-addon1">Category ID</span>
+			<input type="text" class="form-control" [(ngModel)]="newCategory.categoryId" aria-label="CategoryId" aria-describedby="basic-addon1">
+		</div>
+		<hr />
+		<div>
+			<div class="input-group mb-3">
+				<span class="input-group-text" id="basic-addon1">Category Name</span>
+				<input type="text" class="form-control" [(ngModel)]="newCategory.name" aria-label="CategoryName" aria-describedby="basic-addon1">
+			</div>
+		<hr />
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="basic-addon1">Category Creation Date</span>
+			<input type="date" class="form-control" [(ngModel)]="newCategory.creationDate" aria-label="CategoryCreationDate" aria-describedby="basic-addon1">
+		</div>
+		<hr />
+		<div class="container d-flex align-items-end justify-content-end">
+			<app-button text="Add User" classText="btn btn-success" (buttonClick)="addCategory()"></app-button>
+		</div>
+		</div>
+	  </div>
+	</div>
+</div>

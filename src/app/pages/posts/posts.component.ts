@@ -29,6 +29,17 @@ export class PostsComponent {
       .getPosts()
       .subscribe((posts) => (this.filteredContent = posts));
   }
+  
+  ngOnChange(){
+    const queryParams = this.route.snapshot.queryParams;
+    if(queryParams['i'] !== undefined){
+      this.index = parseInt(queryParams['i'])
+    }
+    this.postService.getPosts().subscribe((posts) => (this.posts = posts));
+    this.postService
+      .getPosts()
+      .subscribe((posts) => (this.filteredContent = posts));
+  }
 
   handleDeleteClick(postId: number | undefined) {
     if (postId) {
@@ -93,7 +104,12 @@ export class PostsComponent {
       alert('You are already at last page!!');
     }
   }
+
   handleEditClick(postId: number) {
     this.router.navigate(['posts', postId]);
+  }
+
+  handleAddClick() {
+    this.router.navigate(['addpost']);
   }
 }

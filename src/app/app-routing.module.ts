@@ -9,6 +9,10 @@ import { CommentsComponent } from './pages/comments/comments.component';
 import { CommentDetailComponent } from './pages/comment-detail/comment-detail.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { CategoryDetailComponent } from './pages/category-detail/category-detail.component';
+import { AddUserComponent } from './pages/add-user/add-user.component';
+import { AddCommentComponent } from './pages/add-comment/add-comment.component';
+import { AddPostComponent } from './pages/add-post/add-post.component';
+import { AddCategoryComponent } from './pages/add-category/add-category.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent},
@@ -20,6 +24,10 @@ const routes: Routes = [
   { path: 'comments/:id', component: CommentDetailComponent},
   { path: 'category', component: CategoryComponent},
   { path: 'category/:id', component: CategoryDetailComponent},
+  { path: 'adduser', component : AddUserComponent},
+  { path: 'addcomment', component : AddCommentComponent},
+  { path: 'addpost', component : AddPostComponent},
+  { path: 'addcategory', component : AddCategoryComponent},
 ];
 
 @NgModule({

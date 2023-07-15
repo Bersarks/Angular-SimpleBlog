@@ -22,7 +22,10 @@ export class UsersComponent {
   handleEditClick(userId: number) {
     this.router.navigate(['users', userId]);
   }
-
+  
+  handleAddClick() {
+    this.router.navigate(['adduser']);
+  }
   constructor(private usersService: UsersService, private router: Router, private activeRoute : ActivatedRoute) {
       const queryParams = this.activeRoute.snapshot.queryParams;
     if (queryParams['p'] !== undefined) {
@@ -30,6 +33,17 @@ export class UsersComponent {
     }
    }
   ngOnInit(): void {
+    this.usersService.getUsers().subscribe(users => {
+      this.users = users;
+      this.filteredUsers = this.users;
+    });
+    this.usersService.getUsersSubject().subscribe(users => {
+      this.users = users;
+      this.filteredUsers = this.users;
+    });
+  }
+
+  ngOnChanges(): void {
     this.usersService.getUsers().subscribe(users => {
       this.users = users;
       this.filteredUsers = this.users;

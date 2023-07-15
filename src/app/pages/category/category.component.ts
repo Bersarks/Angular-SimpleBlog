@@ -29,7 +29,17 @@ export class CategoryComponent {
       .getCategories()
       .subscribe((comments) => (this.filteredContent = comments));
   }
-
+  
+  ngOnChange(): void {
+    const queryParams = this.route.snapshot.queryParams;
+    if(queryParams['i'] !== undefined){
+      this.index = parseInt(queryParams['i'])
+    }
+    this.categoryService.getCategories().subscribe((categories) => (this.categories = categories));
+    this.categoryService
+      .getCategories()
+      .subscribe((comments) => (this.filteredContent = comments));
+  }
   handleDeleteClick(categoryId: number | undefined) {
     if (categoryId) {
       this.categoryService.deleteCategory(categoryId);
@@ -93,7 +103,12 @@ export class CategoryComponent {
       alert('You are already at last page!!');
     }
   }
+  
   handleEditClick(categoryId: number | undefined) {
     this.router.navigate(['category', categoryId]);
+  }
+  
+  handleAddClick() {
+    this.router.navigate(['addcategory']);
   }
 }

@@ -16,6 +16,10 @@ import { CommentsComponent } from './pages/comments/comments.component';
 import { CommentDetailComponent } from './pages/comment-detail/comment-detail.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { CategoryDetailComponent } from './pages/category-detail/category-detail.component';
+import { AddUserComponent } from './pages/add-user/add-user.component';
+import { AddPostComponent } from './pages/add-post/add-post.component';
+import { AddCommentComponent } from './pages/add-comment/add-comment.component';
+import { AddCategoryComponent } from './pages/add-category/add-category.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,11 @@ import { CategoryDetailComponent } from './pages/category-detail/category-detail
     CommentsComponent,
     CommentDetailComponent,
     CategoryComponent,
-    CategoryDetailComponent
+    CategoryDetailComponent,
+    AddUserComponent,
+    AddPostComponent,
+    AddCommentComponent,
+    AddCategoryComponent
   ],
   imports: [
     BrowserModule,
