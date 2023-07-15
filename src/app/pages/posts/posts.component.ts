@@ -13,8 +13,12 @@ export class PostsComponent {
   title: string = 'Posts';
   posts: Content[] = [];
   commentCount: number = 0;
+  categoryId: number = 0;
+  userId: number = 0;
   
   searchText: string = '';
+  searchText1: string = '';
+  searchText2: string = '';
   filteredContent: Content[] = [];
 
   constructor(private postService: PostsService, private router: Router, private route: ActivatedRoute,
@@ -28,9 +32,13 @@ export class PostsComponent {
       this.index = parseInt(queryParams['i'])
     }
     this.postService.getPosts().subscribe((posts) => (this.posts = posts));
-    this.postService
-      .getPosts()
-      .subscribe((posts) => (this.filteredContent = posts));
+    this.postService.getPosts().subscribe((posts) => (this.filteredContent = posts));
+    if (queryParams['userId'] || queryParams['postId'] || queryParams['categoryId']) {
+      this.searchText = queryParams['userId'];
+      this.searchText1 = queryParams['postId'];
+      this.searchText2 = queryParams['categoryId'];
+      this.filterData();
+    }
   }
   
   ngOnChange(){
@@ -39,9 +47,7 @@ export class PostsComponent {
       this.index = parseInt(queryParams['i'])
     }
     this.postService.getPosts().subscribe((posts) => (this.posts = posts));
-    this.postService
-      .getPosts()
-      .subscribe((posts) => (this.filteredContent = posts));
+    this.postService.getPosts().subscribe((posts) => (this.filteredContent = posts));
   }
 
   handleDeleteClick(postId: number | undefined) {
@@ -64,20 +70,27 @@ export class PostsComponent {
   }
 
   filterData() {
-    if (this.searchText === '') {
-      this.postService
-        .getPosts()
-        .subscribe((posts) => (this.filteredContent = posts));
-    } else {
-      this.filteredContent = this.posts.filter((post) => {
-        return post.postId === +this.searchText;
-      });
+    if (this.searchText === '' && this.searchText1 === '' && this.searchText2 === '') {
+      this.postService.getPosts().subscribe
+      ((posts) => (this.filteredContent = posts));
+    }
+    if (this.searchText !== '') {
+      this.filteredContent = this.posts.filter
+      ((post) => {return post.userId === +this.searchText;});
+    }
+    if (this.searchText1 !== '') {
+      this.filteredContent = this.posts.filter
+      ((post) => {return post.postId === +this.searchText1;});
+    }
+    if (this.searchText2 !== '') {
+      this.filteredContent = this.posts.filter
+      ((post) => {return post.categoryId === +this.searchText2;});
     }
   }
 
   handleSearchTextChange(searchText: string) {
     this.router.navigate(['posts'], {
-      queryParams: { postId: this.searchText },
+      queryParams: { userId: this.searchText, postId: this.searchText1 , categoryId: this.searchText2},
     });
     this.filterData();
   }
@@ -91,11 +104,8 @@ export class PostsComponent {
     if (this.index > 0) {
       this.index--;
       this.isNextDisabled = false;
-      this.index === 0
-        ? this.router.navigate(['posts'])
-        : this.router.navigate(['posts'], {
-            queryParams: { i: this.index },
-          });
+      this.index === 0 ? this.router.navigate(['posts']) : this.router.navigate(['posts'],
+      { queryParams: { i: this.index }, });
     } else {
       alert('You are already on first page!');
     }

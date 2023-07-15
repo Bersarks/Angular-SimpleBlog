@@ -4,25 +4,37 @@
 		class="w-full bg-cyan-800 flex flex-col items-center rounded pb-2 px-2"
 		*ngIf="comment"
 	  >
-	  <h3>
-		<strong>{{ "Comment Details: " }}</strong>
-		{{ comment.commentId }}
-	  </h3>
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="basic-addon1">Comment ID</span>
+			<span class="input-group-text" id="basic-addon1">{{comment.commentId}}</span>
+		</div>
+		<hr />
 		<div>
-		  <strong>{{ "Confirm Status: " }}</strong>
-		  <input title="editField" type="checkbox" [(ngModel)]="comment.isConfirmed" /> <br />
+			<div class="input-group-text">
+				<span class="input-group-text" id="basic-addon2">Confirmation Status</span>
+				<input class="form-check-input mt-0" type="checkbox" [(ngModel)]="comment.isConfirmed" aria-label="Checkbox for following text input">
+			</div>
 		  <hr />
-		  <strong>{{"Post ID: "}}</strong> 
-		  <input title="editField" type="text" [(ngModel)]="comment.postId" /> <br/>
-		  <hr />
-		  <strong>{{"User ID: "}}</strong> 
-		  <input title="editField" type="text" [(ngModel)]="comment.userId" /> <br/>
-		  <hr />
-		  <strong>{{ "Comment Content: " }}</strong>
-		  <input title="editField" type="text" [(ngModel)]="comment.comment" /> <br />
-		  <hr />
-		  <strong>{{ "Comment Creation Date: " }}</strong> {{comment.creationDate | date: 'dd/MM/yyyy'}} <br />
-		  <strong>{{"Select date to change:"}} </strong><input title="editField" type="date" [(ngModel)]="comment.creationDate" />
+		<div>
+			<div class="input-group mb-3">
+				<span class="input-group-text" id="basic-addon1">User ID</span>
+				<input type="text" class="form-control" [(ngModel)]="comment.userId" aria-label="postUserid" aria-describedby="basic-addon1">
+			</div>
+		<hr />
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="basic-addon1">Post ID</span>
+			<input type="text" class="form-control" [(ngModel)]="comment.postId" aria-label="postCategoryId" aria-describedby="basic-addon1">
+		</div>
+		<hr />
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="basic-addon1">Comment</span>
+			<input type="text" class="form-control" [(ngModel)]="comment.comment" aria-label="postTitle" aria-describedby="basic-addon1">
+		</div>
+		<hr />
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="basic-addon1">Comment Creation Date</span>
+			<input type="date" class="form-control" [(ngModel)]="comment.creationDate" aria-label="postCreationDate" aria-describedby="basic-addon1">
+		</div>
 		  <hr />
 		</div>
 	  </div>

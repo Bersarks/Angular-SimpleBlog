@@ -17,7 +17,8 @@ export class CategoryDetailComponent {
   post?: Content;
   postCount : number = 0;
 
-  constructor(private route: ActivatedRoute, private categoryService: CategoriesService , private postsService : PostsService) {}
+  constructor(private route: ActivatedRoute, private categoryService: CategoriesService , private postsService : PostsService,
+    private router : Router) {}
 
   ngOnInit(): void {
     const params = this.route.snapshot.params;
@@ -26,5 +27,9 @@ export class CategoryDetailComponent {
     (category => this.category = category);
     this.postsService.getPosts().subscribe(post => this.posts = post);
     this.postCount = this.posts.filter(post => post.categoryId === commentId).length;
+  }
+
+  handlePostPageClick(categoryId: number) {
+    this.router.navigate(['posts'] , {queryParams : {userId : "", postId: "", categoryId : categoryId}});
   }
 }

@@ -13,6 +13,8 @@ export class CommentsComponent {
   comments: Comment[] = [];
 
   searchText: string = '';
+  searchText1: string = '';
+  searchText2: string = '';
   filteredContent: Comment[] = [];
 
   constructor(private commentService: CommentsService, private router: Router, private route: ActivatedRoute) {
@@ -52,18 +54,29 @@ export class CommentsComponent {
   }
 
   filterData() {
-    if (this.searchText === '') {
+    if (this.searchText === '' && this.searchText1 === '' && this.searchText2 === '') {
       this.commentService.getComments().subscribe
         ((comments) => (this.filteredContent = comments));
-    } else {
+    }
+    if (this.searchText !== '') {
       this.filteredContent = this.comments.filter
-      ((comment) => {return comment.commentId === +this.searchText;});
+      ((comment) => {return comment.userId === +this.searchText;});
+    }
+    if ( this.searchText1 !== ''){
+      this.filteredContent = this.comments.filter
+      ((comment) => {return comment.postId === +this.searchText1;});
+    }
+    if ( this.searchText2 !== ''){
+      this.filteredContent = this.comments.filter
+      ((comment) => {return comment.commentId === +this.searchText2;});
     }
   }
 
+
   handleSearchTextChange(searchText: string) {
     this.router.navigate(['comments'], {
-      queryParams: { commentId: this.searchText },
+      queryParams: {commentId: this.searchText,
+         postId: this.searchText1, userId: this.searchText2 },
     });
     this.filterData();
   }

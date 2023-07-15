@@ -1,5 +1,7 @@
 <div class="input-group mb-3">
-	<input type="text" class="form-control" placeholder="Search By Post ID" [(ngModel)]="searchText" aria-describedby="button-addon2">
+	<input type="text" class="form-control" placeholder="Search By User ID" [(ngModel)]="searchText" aria-describedby="button-addon2">
+	<input type="text" class="form-control" placeholder="Search By Post ID" [(ngModel)]="searchText1" aria-describedby="button-addon2">
+	<input type="text" class="form-control" placeholder="Search By Comment ID" [(ngModel)]="searchText2" aria-describedby="button-addon2">
 	<app-button text="Search" classText="btn btn-success" (buttonClick)="handleSearchTextChange(searchText)"></app-button>
 </div>
 <div class="container d-flex align-items-center justify-content-center">
@@ -11,7 +13,7 @@
 		<thead>
 			<tr class="text-center">
 				<th scope="col">Comment ID</th>
-				<th scope="col">postId ID</th>
+				<th scope="col">post ID</th>
 				<th scope="col">User ID</th>
 				<th scope="col">Comment</th>
 				<th scope="col">Creation Date</th>

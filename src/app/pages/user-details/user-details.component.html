@@ -4,28 +4,37 @@
 		class="w-full bg-cyan-800 flex flex-col items-center rounded pb-2 px-2"
 		*ngIf="user"
 	  >
-	  <h3>
-		<strong>{{ "User Details: " }}</strong>
-		{{ user.username }}
-	  </h3>
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="basic-addon1">UserId</span>
+			<span class="input-group-text" id="basic-addon1">{{user.userId}}</span>
+		</div>
+		<hr/>
 		<div>
-		  <strong>{{ "Active Status: " }}</strong>
-		  <input title="editField" type="checkbox" [(ngModel)]="user.isActive" /> <br />
-		  <strong>{{"UserId: "}}</strong> 
-		  <input title="editField" type="text" [(ngModel)]="user.userId" /> <br/>
-		  <strong>{{ "Username: " }}</strong>
-		  <input title="editField" type="text" [(ngModel)]="user.username" /> <br />
+			<div class="input-group-text">
+				<span class="input-group-text" id="basic-addon2">Activation Status</span>				
+				<input class="form-check-input mt-0" type="checkbox" [(ngModel)]="user.isActive" aria-label="Checkbox for following text input">
+			</div>
 		  <hr />
-		  <strong>{{ "User email: " }}</strong>
-		  <input title="editField" type="text" [(ngModel)]="user.email" /> <br />
-		  <hr />
-		  <strong>{{ "Users Creation Date: " }}</strong> {{user.creationDate | date: 'dd/MM/yyyy'}} <br />
-		  <strong>{{"Select date to change:"}} </strong><input title="editField" type="date" [(ngModel)]="user.creationDate" />
+		<div>
+			<div class="input-group mb-3">
+				<span class="input-group-text" id="basic-addon1">Username</span>
+				<input type="text" class="form-control" [(ngModel)]="user.username" aria-label="Username" aria-describedby="basic-addon1">
+			</div>
+		<hr />
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="basic-addon1">User E-Mail</span>
+			<input type="text" class="form-control" [(ngModel)]="user.email" aria-label="UserEmail" aria-describedby="basic-addon1">
+		</div>
+		<hr />
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="basic-addon1">User Creation Date</span>
+			<input type="date" class="form-control" value="user.creationDate | date dd/MM/yyyy" [(ngModel)]="user.creationDate" aria-label="UserCreationDate" aria-describedby="basic-addon1">
+		</div>
 		  <hr />
 		  <ng-container *ngIf="posts">
 			<button class="btn btn-success btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDiv" aria-expanded="false" aria-controls="collapseExample">
 				Show Posts
-			  </button>
+			</button>
 			<div class="collapse" id="collapseDiv">
 				<div class="card card-body">
 					<ul>

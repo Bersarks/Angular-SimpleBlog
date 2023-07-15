@@ -4,20 +4,41 @@
 		class="w-full bg-cyan-800 flex flex-col items-center rounded pb-2 px-2"
 		*ngIf="category"
 	  >
-	  <h3>
-		<strong>{{ "Category Details: " }}</strong>
-		{{ category.name }}
-	  </h3>
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="basic-addon1">Category ID</span>
+			<span class="input-group-text" id="basic-addon1">{{category.categoryId}}</span>
+		</div>
+		<hr />
 		<div>
-		  <strong>{{"User ID: "}}</strong> 
-		  <input title="editField" type="text" [(ngModel)]="category.categoryId" /> <br/>
-		  <hr />
-		  <strong>{{ "Posts Count Under This Category: " }}</strong>
-		  <input title="editField" type="text" [(ngModel)]="postCount" /> <br />
-		  <hr />
-		  <strong>{{ "Category Creation Date: " }}</strong> {{category.creationDate | date: 'dd/MM/yyyy'}} <br />
-		  <strong>{{"Select date to change:"}} </strong><input title="editField" type="date" [(ngModel)]="category.creationDate" />
-		  <hr />
+			<div class="input-group mb-3">
+				<span class="input-group-text" id="basic-addon1">Category Name</span>
+				<input type="text" class="form-control" [(ngModel)]="category.name" aria-label="CategoryName" aria-describedby="basic-addon1">
+			</div>
+		<hr />
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="basic-addon1">Category Creation Date</span>
+			<input type="date" class="form-control" [(ngModel)]="category.creationDate" aria-label="CategoryCreationDate" aria-describedby="basic-addon1">
+		</div>
+		<hr />
+		<div class="container d-flex align-items-end justify-content-end">
+			<app-button text="Posts Page" classText="btn btn-success" (buttonClick)="handlePostPageClick(category.categoryId)"></app-button>
+		</div>
+		<ng-container *ngIf="posts">
+			<button class="btn btn-success btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDiv" aria-expanded="false" aria-controls="collapseExample">
+				Show Posts
+			</button>
+			<div class="collapse" id="collapseDiv">
+				<div class="card card-body">
+					<ul>
+						<li class="list-group-item" *ngFor="let post of posts ">
+						  <b>Post Id: </b> {{ post.postId }} -> <b>Title: </b> {{post.title}}
+						  <br/><b>Content: </b>
+						  {{ post.content }} <hr>
+						</li>
+					  </ul>
+				</div>
+			  </div>
+		  </ng-container>
 		</div>
 	  </div>
 	</div>
