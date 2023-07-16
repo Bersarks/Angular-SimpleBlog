@@ -34,10 +34,6 @@ export class AddPostComponent {
     this.categoriesService.getCategories().subscribe(categories => this.maxCategoryID = categories.length);
   }
   
-/*
-*   temel kontroller deneme amaçlı yapıldı. Şuanki blog haliyle her şey değiştirilebilir olduğu için
-*   bu kontrollerin daha üst düzeyi eklenmesi gerekiyor tam verim almak için.
-*/
   addPost() {
     if (this.newPost.content === '' || this.newPost.title === '' ||
     this.newPost.creationDate === ''){

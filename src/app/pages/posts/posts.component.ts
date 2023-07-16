@@ -101,15 +101,12 @@ export class PostsComponent {
 
   index: number = 0;
   size: number = 10;
-  isNextDisabled: boolean = false;
-  isPrevDisabled: boolean = false;
 
   handleBackClick() {
     if (this.index > 0) {
       this.index--;
-      this.isNextDisabled = false;
       this.index === 0 ? this.router.navigate(['posts']) : this.router.navigate(['posts'],
-      { queryParams: { i: this.index }, });
+      {queryParams: { i: this.index },});
     } else {
       alert('You are already on first page!');
     }
@@ -124,10 +121,7 @@ export class PostsComponent {
     }
     if (this.index + 1 < totalPage) {
       this.index++;
-      this.router.navigate(['posts'], {
-        queryParams: { i: this.index },
-      });
-      this.isPrevDisabled = false;
+      this.router.navigate(['posts'], {queryParams: { i: this.index },});
     } else {
       alert('You are already at last page!!');
     }

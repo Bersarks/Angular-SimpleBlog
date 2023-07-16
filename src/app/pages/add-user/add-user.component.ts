@@ -23,8 +23,9 @@ export class AddUserComponent {
     this.newUser.userId = this.reservedIds + 1;
     }
 
-  // zaten dışarıdan elle user id değiştirilebildiği için saçma gelse de burda en azından var olan id girilmesini engelledim.
-  // ayrıca user id girilmediğinde de hata vermesini sağladım.
+// Add new user to users array and go to users page.
+//Check if all fields are filled.
+//Check if userId is taken.
   addUser() {
     if (this.newUser.username === '' || this.newUser.email === ''
      || this.newUser.creationDate === '' || this.newUser.userId === undefined) {

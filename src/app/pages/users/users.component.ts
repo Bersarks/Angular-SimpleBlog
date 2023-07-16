@@ -23,13 +23,16 @@ export class UsersComponent {
   filterBy: string = '';
   filteredUsers: Users[] = [];
 
+ // Go into detail of user by userId.
   handleEditClick(userId: number) {
     this.router.navigate(['users', userId]);
   }
-  
+
+  // Go to add user page.
   handleAddClick() {
     this.router.navigate(['adduser']);
   }
+
   constructor(private usersService: UsersService, private router: Router, private activeRoute : ActivatedRoute,
     private postsService: PostsService, private commentsService: CommentsService) {
       const queryParams = this.activeRoute.snapshot.queryParams;
@@ -37,17 +40,16 @@ export class UsersComponent {
         this.index = parseInt(queryParams['p']);
     }
    }
+
+   // Getting users array from users service and subscribe to it.
   ngOnInit(): void {
-    this.usersService.getUsers().subscribe(users => {
-      this.users = users;
-      this.filteredUsers = this.users;
-    });
-    this.usersService.getUsersSubject().subscribe(users => {
-      this.users = users;
-      this.filteredUsers = this.users;
-    });
+    this.usersService.getUsers().subscribe
+    (users => {this.users = users;this.filteredUsers = this.users;});
+    this.usersService.getUsersSubject().subscribe
+    (users => {this.users = users;this.filteredUsers = this.users;});
   }
 
+ // Getting users array from users service and subscribe to it. When change made.
   ngOnChanges(): void {
     this.usersService.getUsers().subscribe(users => {
       this.users = users;
@@ -59,6 +61,7 @@ export class UsersComponent {
     });
   }
 
+ // Delete user by userId. Check if there is a comment and post by user.
   handleDeleteClick(userId: number | undefined) {
     if (userId !== undefined) {
       this.postsService.getPostsByUser(userId).subscribe(posts => this.postCount = posts.length);
@@ -80,7 +83,8 @@ export class UsersComponent {
       alert('User ID can not find');
     }
   }
-  
+
+  // Search user by userId. Search text is taken from input.
   handleSearchTextChange(searchText: string) {
     this.searchText = searchText;
     this.filterUsers();
@@ -94,6 +98,7 @@ export class UsersComponent {
     }
   }
 
+ // Go to next page. If there is no next page, alert.
   handleNextClick() {
     const remainingPages = this.users.length % this.size;
     let totalPage: number = Math.floor(this.users.length / this.size);
@@ -102,22 +107,18 @@ export class UsersComponent {
     }
     if (this.index + 1 < totalPage) {
       this.index++;
-      this.router.navigate(['users'], {
-        queryParams: { i: this.index },
-      });
+      this.router.navigate(['users'], {queryParams: { i: this.index },});
     } else {
       alert('Last Page!!');
     }
   }
-
+  
+// Go to previous page. If there is no previous page, alert.
   handleBackClick() {
     if (this.index > 0) {
       this.index--;
-      this.index === 0
-        ? this.router.navigate(['users'])
-        : this.router.navigate(['users'], {
-            queryParams: { i: this.index },
-          });
+      this.index === 0 ? this.router.navigate(['users']) : this.router.navigate
+      (['users'], {queryParams: { i: this.index },});
     } else {
       alert('You are already on the first page!!');
     }

@@ -66,18 +66,13 @@ export class CategoryComponent {
 
   index: number = 0;
   size: number = 10;
-  isNextDisabled: boolean = false;
-  isPrevDisabled: boolean = false;
 
   handleBackClick() {
     if (this.index > 0) {
       this.index--;
-      this.isNextDisabled = false;
       this.index === 0
         ? this.router.navigate(['category'])
-        : this.router.navigate(['category'], {
-            queryParams: { i: this.index },
-          });
+        : this.router.navigate(['category'], {queryParams: { i: this.index },});
     } else {
       alert('You are already on first page!');
     }
@@ -95,7 +90,6 @@ export class CategoryComponent {
       this.router.navigate(['category'], {
         queryParams: { i: this.index },
       });
-      this.isPrevDisabled = false;
     } else {
       alert('You are already at last page!!');
     }

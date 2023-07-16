@@ -14,9 +14,12 @@ export class UserDetailsComponent {
   users: Users[] = [];
   user?: Users;
   posts: Content[] = [];
+
   constructor(private route: ActivatedRoute,
     private usersService: UsersService, private postsService: PostsService) {}
 
+// Getting user by userId from users service and subscribe to it.
+// Getting posts by userId from posts service and subscribe to it.
   ngOnInit(): void {
     const params = this.route.snapshot.params;
     let userId = parseInt(params['id']);
