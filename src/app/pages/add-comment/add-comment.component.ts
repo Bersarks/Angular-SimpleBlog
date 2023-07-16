@@ -38,7 +38,7 @@ export class AddCommentComponent {
       alert('Please fill all the fields');
       return;
     }
-    else if (this.newComment.commentId <= 0 || this.newComment.commentId > this.maxCommentID){
+    else if (this.newComment.commentId <= 0 || this.newComment.commentId <= this.maxCommentID){
       alert('Comment ID is wrong');
       return;
     }

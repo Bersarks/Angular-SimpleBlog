@@ -22,7 +22,7 @@ export class CategoriesService {
   }
 
   getCategory(categoryId: number): Observable<Category | undefined>{
-    const category = this.categories.find(category => category.categoryId = categoryId)
+    const category = this.categories.find(category => category.categoryId === categoryId)
     return of(category)
   }
 

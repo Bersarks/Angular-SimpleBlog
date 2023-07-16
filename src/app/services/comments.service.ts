@@ -17,7 +17,7 @@ export class CommentsService {
   }
 
   getCommentById(commentId: number): Observable<Comment | undefined> {
- const comment = this.comments.find((comment: Comment) => (comment.commentId = commentId))
+ const comment = this.comments.find((comment: Comment) => (comment.commentId === commentId))
  return of(comment);
   }
 
