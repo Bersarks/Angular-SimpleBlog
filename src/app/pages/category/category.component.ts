@@ -49,14 +49,11 @@ export class CategoryComponent {
   }
 
   filterData() {
-    if (this.searchText === '') {
-      this.categoryService
-        .getCategories()
-        .subscribe((categories) => (this.filteredContent = categories));
-    } else {
-      this.filteredContent = this.categories.filter((category) => {
-        return category.categoryId === +this.searchText;
-      });
+    this.categoryService.getCategories().subscribe
+    ((categories) => (this.filteredContent = categories));
+    if (this.searchText !== '') {
+      this.filteredContent = this.filteredContent.filter
+      ((category) => {return category.categoryId === +this.searchText;});
     }
   }
 

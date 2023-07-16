@@ -48,6 +48,12 @@ export class PostsComponent {
     }
     this.postService.getPosts().subscribe((posts) => (this.posts = posts));
     this.postService.getPosts().subscribe((posts) => (this.filteredContent = posts));
+    if (queryParams['userId'] || queryParams['postId'] || queryParams['categoryId']) {
+      this.searchText = queryParams['userId'];
+      this.searchText1 = queryParams['postId'];
+      this.searchText2 = queryParams['categoryId'];
+      this.filterData();
+    }
   }
 
   handleDeleteClick(postId: number | undefined) {
@@ -70,20 +76,18 @@ export class PostsComponent {
   }
 
   filterData() {
-    if (this.searchText === '' && this.searchText1 === '' && this.searchText2 === '') {
-      this.postService.getPosts().subscribe
-      ((posts) => (this.filteredContent = posts));
-    }
+    this.postService.getPosts().subscribe
+    ((posts) => (this.filteredContent = posts));
     if (this.searchText !== '') {
-      this.filteredContent = this.posts.filter
+      this.filteredContent = this.filteredContent.filter
       ((post) => {return post.userId === +this.searchText;});
     }
     if (this.searchText1 !== '') {
-      this.filteredContent = this.posts.filter
+      this.filteredContent = this.filteredContent.filter
       ((post) => {return post.postId === +this.searchText1;});
     }
     if (this.searchText2 !== '') {
-      this.filteredContent = this.posts.filter
+      this.filteredContent = this.filteredContent.filter
       ((post) => {return post.categoryId === +this.searchText2;});
     }
   }

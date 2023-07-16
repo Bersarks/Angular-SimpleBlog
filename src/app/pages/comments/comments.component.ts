@@ -54,20 +54,18 @@ export class CommentsComponent {
   }
 
   filterData() {
-    if (this.searchText === '' && this.searchText1 === '' && this.searchText2 === '') {
-      this.commentService.getComments().subscribe
-        ((comments) => (this.filteredContent = comments));
-    }
+    this.commentService.getComments().subscribe
+      ((comments) => (this.filteredContent = comments));
     if (this.searchText !== '') {
-      this.filteredContent = this.comments.filter
+      this.filteredContent = this.filteredContent.filter
       ((comment) => {return comment.userId === +this.searchText;});
     }
     if ( this.searchText1 !== ''){
-      this.filteredContent = this.comments.filter
+      this.filteredContent = this.filteredContent.filter
       ((comment) => {return comment.postId === +this.searchText1;});
     }
     if ( this.searchText2 !== ''){
-      this.filteredContent = this.comments.filter
+      this.filteredContent = this.filteredContent.filter
       ((comment) => {return comment.commentId === +this.searchText2;});
     }
   }

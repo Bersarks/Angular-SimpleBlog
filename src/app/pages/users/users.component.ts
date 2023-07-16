@@ -86,14 +86,11 @@ export class UsersComponent {
     this.filterUsers();
   }
   filterUsers() {
-    if (this.searchText === '') {
-      this.usersService
-        .getUsers()
-        .subscribe((users) => (this.filteredUsers = users));
-    } else {
-      this.filteredUsers = this.users.filter((user) => {
-        return user.userId === +this.searchText;
-      });
+    this.usersService.getUsers().subscribe
+    ((users) => (this.filteredUsers = users));
+    if (this.searchText !== '') {
+      this.filteredUsers = this.filteredUsers.filter
+      ((user) => {return user.userId === +this.searchText;});
     }
   }
 
